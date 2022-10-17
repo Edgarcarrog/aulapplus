@@ -1,11 +1,10 @@
-import Header from "../components/Header";
-import Input from "../components/TextInput";
+import Input from "../components/Input";
+import Button from "../components/Button";
 
 const Login = () => {
   return (
     <div className="main">
       <div className="container px-4">
-        <Header />
         <div className="row justify-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">
             <div className="ps-xl-5 pt-xl-5 fade-in-left">
@@ -17,7 +16,7 @@ const Login = () => {
             </div>
           </div>
           <div className="col-12 col-xl-5 p-0 login-form d-flex flex-column align-items-center">
-            <div className="inline-block pb-3">
+            <div className="inline-block mb-3 mt-3 mt-md-0">
               <h3 className="inline-block">Crea una cuenta para iniciar</h3>
             </div>
             <div className="box">
@@ -43,13 +42,10 @@ const Login = () => {
                   type="password"
                 />
                 <div className="mt-3">
-                  <button
-                    type="submit"
-                    className="btn btn-main form-control"
-                    /* onClick={handleSubmit} */
-                  >
-                    Registrarse
-                  </button>
+                  <Button className="btn-main">Iniciar Sesión</Button>
+                </div>
+                <div className="mt-3">
+                  <Button className="btn-secondary">Regístrate</Button>
                 </div>
               </form>
             </div>

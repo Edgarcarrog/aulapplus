@@ -48,6 +48,16 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.btn-main {
+  background-color: #027373;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #A62B85;
+  color: #fff;
+}
+
 h3 {
   font-size: 1.7rem;
 }
@@ -81,11 +91,6 @@ p {
 
 .link {
   text-decoration: none;
-}
-
-.btn-main {
-  background-color: #027373;
-  color: #fff;
 }
 
 @media screen and (max-width: 420px) {
