@@ -1,0 +1,106 @@
+.fade-in-left {
+  -webkit-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  -moz-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@keyframes fade-in-left {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in-left {
+  0% {
+    -moz-transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -moz-transform: translateX(0);
+    opacity: 1;
+  }
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+.main {
+  background: url(../assets/bgimage2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.principal {
+  padding-top: 50px;
+}
+
+.box {
+  width: 400px;
+  background-color: #fff;
+  position: relative;
+  padding: 1rem;
+  box-shadow: 0 0 5px 1px #696969;
+}
+
+.inline-block {
+  display: inline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.btn-main {
+  background-color: #027373;
+  color: #fff;
+}
+
+@media screen and (max-width: 420px) {
+  h3 {
+    font-size: 1.1rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .box {
+    width: 100%;
+  }
+  .principal {
+    padding-top: 10px;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

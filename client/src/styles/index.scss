@@ -1,0 +1,65 @@
+
+@import "abstracts/variables";
+
+@import "base/animations";
+@import "base/base";
+
+
+h3 {
+  font-size: 1.7rem;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+.main {
+  background: url(../assets/bgimage2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.principal {
+  padding-top: 50px;
+}
+
+.box {
+  width: 400px;
+  background-color: #fff;
+  position: relative;
+  padding: 1rem;
+  box-shadow: 0 0 5px 1px #696969;
+}
+
+.inline-block {
+  display: inline;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.btn-main {
+  background-color: $color-primary;
+  color: #fff;
+}
+
+@media screen and (max-width: 420px) {
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .box {
+    width: 100%;
+  }
+
+  .principal {
+    padding-top: 10px;
+  }
+}
+
