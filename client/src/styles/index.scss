@@ -1,4 +1,3 @@
-
 @import "abstracts/variables";
 
 @import "base/animations";
@@ -20,10 +19,17 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+  position: relative;
+}
+
+.main-container {
+  height: 100%;
+  position: absolute;
 }
 
 .principal {
   padding-top: 50px;
+  height: 100%;
 }
 
 .box {
@@ -43,12 +49,16 @@ p {
 }
 
 @media screen and (max-width: 420px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
   h3 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   .box {
@@ -59,4 +69,3 @@ p {
     padding-top: 10px;
   }
 }
-

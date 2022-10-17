@@ -1,11 +1,12 @@
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   return (
     <div className="main">
-      <div className="container px-4">
-        <div className="row justify-content-around m-0 principal">
+      <div className="container main-container px-4">
+        <div className="row d-flex align-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">
             <div className="ps-xl-5 pt-xl-5 fade-in-left">
               <h1>Aulapplus.</h1>
@@ -16,18 +17,8 @@ const Login = () => {
             </div>
           </div>
           <div className="col-12 col-xl-5 p-0 login-form d-flex flex-column align-items-center">
-            <div className="inline-block mb-3 mt-3 mt-md-0">
-              <h3 className="inline-block">Crea una cuenta para iniciar</h3>
-            </div>
             <div className="box">
               <form>
-                <Input
-                  id="name"
-                  label="Nombre"
-                  htmlFor="name"
-                  autoFocus="true"
-                  type="text"
-                />
                 <Input id="email" label="Email" htmlFor="email" type="email" />
                 <Input
                   id="password"
@@ -35,17 +26,19 @@ const Login = () => {
                   htmlFor="password"
                   type="password"
                 />
-                <Input
-                  id="confirmPassword"
-                  label="Confirma el Password"
-                  htmlFor="confirmPassword"
-                  type="password"
-                />
                 <div className="mt-3">
                   <Button className="btn-main">Iniciar Sesión</Button>
                 </div>
-                <div className="mt-3">
-                  <Button className="btn-secondary">Regístrate</Button>
+                <div className="mt-1 text-center">
+                  <NavLink to="signup">
+                    ¿Olvidaste tu contraseña?
+                  </NavLink>
+                </div>
+                <div className="mt-3 text-center">
+                  <span className="mx-2">¿No tienes cuenta?</span>
+                  <NavLink to="signup">
+                    <Button className="btn-secondary">Regístrate</Button>
+                  </NavLink>
                 </div>
               </form>
             </div>
