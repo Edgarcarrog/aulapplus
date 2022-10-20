@@ -4,7 +4,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connectDB = require("./database/db");
-/* const userRoutes = require("./v1/routes/users.routes");
+const userRoutes = require("./v1/routes/users.routes");
+/* 
 const followRoutes = require("./v1/routes/follows.routes");
 const hobbieRoutes = require("./v1/routes/hobbies.routes");
 const postRoutes = require("./v1/routes/posts.routes"); */
@@ -20,7 +21,8 @@ app.use(cors());
 app.use(express.json());
 
 //routers
-/* app.use("/api/v1", userRoutes);
+app.use("/api/v1", userRoutes);
+/* 
 app.use("/api/v1", followRoutes);
 app.use("/api/v1", hobbieRoutes);
 app.use("/api/v1", postRoutes); */
