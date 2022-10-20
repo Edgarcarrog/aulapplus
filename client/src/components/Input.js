@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ id, label, htmlFor, type, autoFocus }) => {
+const Input = ({ id, label, htmlFor, type, autoFocus, handleChange }) => {
   return (
     <div className="mb-2">
       <label htmlFor={htmlFor} className="form-label">
@@ -12,7 +12,7 @@ const Input = ({ id, label, htmlFor, type, autoFocus }) => {
         id={id}
         name={id}
         autoFocus={autoFocus}
-        /*  onChange={handleChange} */
+        onChange={handleChange}
       />
     </div>
   );

@@ -19,7 +19,13 @@ const Login = () => {
           <div className="col-12 col-xl-5 p-0 login-form d-flex flex-column align-items-center">
             <div className="box">
               <form>
-                <Input id="email" label="Email" htmlFor="email" type="email" />
+                <Input
+                  id="email"
+                  label="Email"
+                  htmlFor="email"
+                  autoFocus={true}
+                  type="email"
+                />
                 <Input
                   id="password"
                   label="Password"
@@ -30,9 +36,7 @@ const Login = () => {
                   <Button className="btn-main">Iniciar Sesión</Button>
                 </div>
                 <div className="mt-1 text-center">
-                  <NavLink to="signup">
-                    ¿Olvidaste tu contraseña?
-                  </NavLink>
+                  <NavLink to="signup">¿Olvidaste tu contraseña?</NavLink>
                 </div>
                 <div className="mt-3 text-center">
                   <span className="mx-2">¿No tienes cuenta?</span>

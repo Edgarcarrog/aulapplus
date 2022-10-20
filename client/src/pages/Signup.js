@@ -1,8 +1,41 @@
+import clienteAxios from "../config/axios";
 import { NavLink } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useState } from "react";
 
 const Signup = () => {
+  const [dataForm, setDataForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (event) => {
+    setDataForm({ ...dataForm, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      if (dataForm.password.trim().length < 8)
+        throw new Error("La contraseña debe contener mínimo 8 caracteres");
+      if (
+        dataForm.password.trim().length !==
+        dataForm.confirmPassword.trim().length
+      )
+        throw new Error("Las contraseñas deben coincidir");
+
+      const data = await clienteAxios.post("/users", dataForm);
+      console.log(data.data.message);
+      event.target.reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="main">
       <div className="container main-container px-4">
@@ -22,24 +55,35 @@ const Signup = () => {
                   id="name"
                   label="Nombre"
                   htmlFor="name"
-                  autoFocus="true"
+                  autoFocus={true}
                   type="text"
+                  handleChange={handleChange}
                 />
-                <Input id="email" label="Email" htmlFor="email" type="email" />
+                <Input
+                  id="email"
+                  label="Email"
+                  htmlFor="email"
+                  type="email"
+                  handleChange={handleChange}
+                />
                 <Input
                   id="password"
                   label="Password"
                   htmlFor="password"
                   type="password"
+                  handleChange={handleChange}
                 />
                 <Input
                   id="confirmPassword"
                   label="Confirma el Password"
                   htmlFor="confirmPassword"
                   type="password"
+                  handleChange={handleChange}
                 />
                 <div className="mt-3">
-                  <Button className="btn-main">Crear cuenta</Button>
+                  <Button className="btn-main" onClick={handleSubmit}>
+                    Crear cuenta
+                  </Button>
                 </div>
                 <div className="mt-3 text-center">
                   <span className="mx-2">¿Ya tienes cuenta?</span>
