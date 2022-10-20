@@ -11,7 +11,7 @@ exports.createUser = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  //extraer email y password
+  //extraer email, name y password
   const { email, name, password } = req.body;
   const token = generateToken({ name, email });
   const template = getTemplate(name, token);
@@ -31,6 +31,34 @@ exports.createUser = (req, res) => {
     })
     .catch((error) => {
       console.log(error);
+      return res.status(400).json({ msg: error.message });
+    });
+};
+
+exports.authUser = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { email, password } = req.body;
+
+  return User.findOne({ email })
+    .then((user) => {
+      //console.log(user);
+      /* if (user && !user.verified)
+        throw new Error("El correo no ha sido verificado"); */
+
+      const correctPass =
+        user === null ? false : bcrypt.compareSync(password, user.password);
+      if (!correctPass) throw new Error("Usuario o password incorrecto");
+
+      const userId = user.id;
+      const token = generateToken(userId);
+      return res.status(200).json({ msg: "Bienvenido", data: token });
+    })
+    .catch((error) => {
+      console.log(error.message);
       return res.status(400).json({ msg: error.message });
     });
 };
