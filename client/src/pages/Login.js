@@ -1,8 +1,30 @@
+import clienteAxios from "../config/axios";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  const [dataForm, setDataForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setDataForm({ ...dataForm, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const data = await clienteAxios.post("/users/auth", dataForm);
+      console.log(data);
+      event.target.reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="main">
       <div className="container main-container px-4">
@@ -18,19 +40,23 @@ const Login = () => {
           </div>
           <div className="col-12 col-xl-5 p-0 login-form d-flex flex-column align-items-center">
             <div className="box">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Input
                   id="email"
                   label="Email"
                   htmlFor="email"
                   autoFocus={true}
                   type="email"
+                  required={true}
+                  handleChange={handleChange}
                 />
                 <Input
                   id="password"
                   label="Password"
                   htmlFor="password"
                   type="password"
+                  required={true}
+                  handleChange={handleChange}
                 />
                 <div className="mt-3">
                   <Button className="btn-main">Iniciar Sesión</Button>

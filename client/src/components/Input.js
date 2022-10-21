@@ -1,6 +1,14 @@
 import React from "react";
 
-const Input = ({ id, label, htmlFor, type, autoFocus, handleChange }) => {
+const Input = ({
+  id,
+  label,
+  htmlFor,
+  type,
+  autoFocus,
+  handleChange,
+  required,
+}) => {
   return (
     <div className="mb-2">
       <label htmlFor={htmlFor} className="form-label">
@@ -11,6 +19,7 @@ const Input = ({ id, label, htmlFor, type, autoFocus, handleChange }) => {
         className="form-control"
         id={id}
         name={id}
+        required={required}
         autoFocus={autoFocus}
         onChange={handleChange}
       />

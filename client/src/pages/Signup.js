@@ -29,7 +29,7 @@ const Signup = () => {
         throw new Error("Las contraseñas deben coincidir");
 
       const data = await clienteAxios.post("/users", dataForm);
-      console.log(data.data.message);
+      console.log(data);
       event.target.reset();
     } catch (error) {
       console.log(error);
@@ -50,13 +50,14 @@ const Signup = () => {
               <h3 className="inline-block">Crea una cuenta para iniciar</h3>
             </div>
             <div className="box">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Input
                   id="name"
                   label="Nombre"
                   htmlFor="name"
                   autoFocus={true}
                   type="text"
+                  required={true}
                   handleChange={handleChange}
                 />
                 <Input
@@ -64,6 +65,7 @@ const Signup = () => {
                   label="Email"
                   htmlFor="email"
                   type="email"
+                  required={true}
                   handleChange={handleChange}
                 />
                 <Input
@@ -71,6 +73,7 @@ const Signup = () => {
                   label="Password"
                   htmlFor="password"
                   type="password"
+                  required={true}
                   handleChange={handleChange}
                 />
                 <Input
@@ -78,12 +81,11 @@ const Signup = () => {
                   label="Confirma el Password"
                   htmlFor="confirmPassword"
                   type="password"
+                  required={true}
                   handleChange={handleChange}
                 />
                 <div className="mt-3">
-                  <Button className="btn-main" onClick={handleSubmit}>
-                    Crear cuenta
-                  </Button>
+                  <Button className="btn-main">Crear cuenta</Button>
                 </div>
                 <div className="mt-3 text-center">
                   <span className="mx-2">¿Ya tienes cuenta?</span>
