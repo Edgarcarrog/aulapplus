@@ -41,7 +41,7 @@ exports.createUser = (req, res) => {
   }
   //extraer email, name y password
   const { email, name, password } = req.body;
-  const token = generateToken({ name, email }, '15m');
+  const token = generateToken({ name, email }, "15m");
   const template = getTemplate(name, token);
 
   return User.findOne({ email })
@@ -67,16 +67,31 @@ exports.verifyEmail = (req, res) => {
   const token = req.params.token;
   const tokenGotten = verifyToken(token);
   console.log("tokenGotten", tokenGotten);
+
   if (!tokenGotten.payload) {
     return res
       .status(400)
-      .json({ msg: "Hubo un error. Envía un nuevo correo de verificación" });
+      .send("Hubo un error. Envía un nuevo correo de verificación");
   }
 
-  try {
-    //Revisa si el token ya expiró
-    //const { mail } = tokenGotten.payload;
-    /* return userPool
+  const { email } = tokenGotten.payload;
+  return User.findOne({ email })
+    .then((user) => {
+      if (user.verified)
+        throw new Error("El correo ya ha sido verificado anteriormente");
+      return User.findOneAndUpdate({ email }, { verified: true });
+    })
+    .then((user) => {
+      return res.status(200).json({ user });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      return res.status(400).send(error.message);
+    });
+
+  //Revisa si el token ya expiró
+  //
+  /* return userPool
       .getUserByEmail(mail)
       .then((response) => {
         const [[user]] = response;
@@ -92,7 +107,4 @@ exports.verifyEmail = (req, res) => {
       .catch((error) => {
         return { status: 200, msg: error.message };
       }); */
-  } catch (error) {
-    return { status: 200, msg: error.message };
-  }
 };

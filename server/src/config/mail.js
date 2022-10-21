@@ -30,9 +30,9 @@ const getTemplate = (name, token) => {
         <link rel="stylesheet" href="./style.css">
     </head>
     <div id="email__content">
-        <h2>Hola ${name}</h2>
+        <h2>Hola, ${name}</h2>
         <p>Da click en el siguiente enlace para confirmar tu cuenta de Aulapplus</p>
-        <a href="http://localhost:4000/api/v1/users/verify/${token}" target=”_blank”>Confirmar cuenta</a>
+        <a href="http://localhost:3000/verified/${token}" target=”_blank”>Confirmar cuenta</a>
     </div>
     `;
 };
