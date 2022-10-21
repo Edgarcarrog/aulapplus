@@ -58,9 +58,11 @@ const Login = () => {
                   required={true}
                   handleChange={handleChange}
                 />
-                <div className="mt-3">
-                  <Button className="btn-main">Iniciar Sesión</Button>
-                </div>
+                <Input
+                  className="btn-main"
+                  type="submit"
+                  value="Iniciar Sesión"
+                />
                 <div className="mt-1 text-center">
                   <NavLink to="signup">¿Olvidaste tu contraseña?</NavLink>
                 </div>

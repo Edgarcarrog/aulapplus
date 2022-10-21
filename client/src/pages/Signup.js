@@ -84,9 +84,11 @@ const Signup = () => {
                   required={true}
                   handleChange={handleChange}
                 />
-                <div className="mt-3">
-                  <Button className="btn-main">Crear cuenta</Button>
-                </div>
+                <Input
+                  className="btn-main"
+                  type="submit"
+                  value="Crear cuenta"
+                />
                 <div className="mt-3 text-center">
                   <span className="mx-2">¿Ya tienes cuenta?</span>
                   <NavLink to="/">

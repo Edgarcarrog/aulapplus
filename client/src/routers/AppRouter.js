@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import UserVerified from "../pages/UserVerified";
 
 const AppRouter = () => {
   return (
@@ -11,6 +12,7 @@ const AppRouter = () => {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/verified/:token" element={<UserVerified />} />
           {/* <Route path="*" element={<Error />} /> */}
         </Routes>
         {/*  <Footer /> */}
