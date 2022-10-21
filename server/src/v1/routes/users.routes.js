@@ -1,7 +1,11 @@
 const router = require("express").Router();
 const { check } = require("express-validator");
 
-const { authUser, createUser } = require("../../controllers/user.controller");
+const {
+  authUser,
+  createUser,
+  verifyEmail,
+} = require("../../controllers/user.controller");
 
 // api/users
 router
@@ -26,7 +30,9 @@ router
       }),
     ],
     authUser
-  );
+  )
+
+  .get("/users/verify/:token", verifyEmail);
 
 //   .delete("/users/:userId", auth, deleteUser);
 

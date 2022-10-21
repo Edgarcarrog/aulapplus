@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
 
 //genera un token con la data enviada
-const generateToken = (payload) => {
+const generateToken = (payload, expires) => {
   return jwt.sign(
     {
       payload,
     },
     process.env.SECRET,
-    { expiresIn: "30d" }
+    { expiresIn: expires }
   );
 };
 
