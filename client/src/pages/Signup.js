@@ -2,19 +2,15 @@ import clienteAxios from "../config/axios";
 import { NavLink } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { useState } from "react";
+import useForm from "../hooks/useForm";
 
 const Signup = () => {
-  const [dataForm, setDataForm] = useState({
+  const [dataForm, handleChange] = useForm({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-
-  const handleChange = (event) => {
-    setDataForm({ ...dataForm, [event.target.name]: event.target.value });
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();

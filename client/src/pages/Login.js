@@ -1,18 +1,16 @@
 import clienteAxios from "../config/axios";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import useForm from "../hooks/useForm";
 
 const Login = () => {
-  const [dataForm, setDataForm] = useState({
+  const navigate = useNavigate();
+
+  const [dataForm, handleChange] = useForm({
     email: "",
     password: "",
   });
-
-  const handleChange = (event) => {
-    setDataForm({ ...dataForm, [event.target.name]: event.target.value });
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,6 +18,7 @@ const Login = () => {
       const data = await clienteAxios.post("/users/auth", dataForm);
       console.log(data);
       event.target.reset();
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
