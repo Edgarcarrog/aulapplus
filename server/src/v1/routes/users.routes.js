@@ -5,6 +5,7 @@ const {
   authUser,
   createUser,
   verifyEmail,
+  sendMailToken,
 } = require("../../controllers/user.controller");
 
 // api/users
@@ -30,6 +31,12 @@ router
       }),
     ],
     authUser
+  )
+
+  .post(
+    "/users/verify",
+    [check("email", "El email es obligatorio").notEmpty()],
+    sendMailToken
   )
 
   .get("/users/verify/:token", verifyEmail);

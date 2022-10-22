@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const { getTemplate, sendEmail } = require("../config/mail");
 const { generateToken, verifyToken } = require("../helpers/jwt");
-const jwt = require("jsonwebtoken");
 
 exports.authUser = (req, res) => {
   const errors = validationResult(req);
@@ -24,7 +23,7 @@ exports.authUser = (req, res) => {
       if (!correctPass) throw new Error("Usuario y/o password incorrectos");
 
       const userId = user.id;
-      const token = generateToken(userId);
+      const token = generateToken(userId, "30d");
       return res.status(200).json({ msg: "Bienvenido", data: token });
     })
     .catch((error) => {
@@ -63,8 +62,37 @@ exports.createUser = (req, res) => {
     });
 };
 
+exports.sendMailToken = (req, res) => {
+  //revisar si hay errores
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { email } = req.body;
+
+  return User.findOne({ email })
+    .then((user) => {
+      if (!user) throw new Error("No existe una cuenta con este email");
+      if (user.verified)
+        throw new Error("El correo ya ha sido verificado anteriormente");
+      const token = generateToken({ name: user.name, email }, "15m");
+      const template = getTemplate(user.name, token);
+      sendEmail(email, "Confirma tu correo", template).then(() => {
+        console.log("Correo de verificación enviado");
+      });
+      return res
+        .status(200)
+        .json({ msg: "Correo de verificación enviado", user });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({ msg: error.message });
+    });
+};
+
 exports.verifyEmail = (req, res) => {
-  const token = req.params.token;
+  const { token } = req.params;
   const tokenGotten = verifyToken(token);
   console.log("tokenGotten", tokenGotten);
 
@@ -88,23 +116,4 @@ exports.verifyEmail = (req, res) => {
       console.log(error.message);
       return res.status(400).send(error.message);
     });
-
-  //Revisa si el token ya expiró
-  //
-  /* return userPool
-      .getUserByEmail(mail)
-      .then((response) => {
-        const [[user]] = response;
-        //Revisa si el correo ha sido verificado anteriormente
-        if (user.email_verified)
-          throw new Error("El correo ya ha sido verificado anteriormente");
-
-        return userPool.verifyEmail(mail);
-      })
-      .then(() => {
-        return { status: 200, msg: "Correo verificado" };
-      })
-      .catch((error) => {
-        return { status: 200, msg: error.message };
-      }); */
 };
