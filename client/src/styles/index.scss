@@ -4,6 +4,7 @@
 @import "base/base";
 
 @import "components/button";
+@import "components/modal";
 
 
 h3 {
@@ -19,6 +20,7 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+  height: 100%;
   position: relative;
 }
 

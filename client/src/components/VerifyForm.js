@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import clienteAxios from "../config/axios";
 import Input from "./Input";
@@ -12,7 +11,7 @@ const VerifyForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const data = await clienteAxios.post("/users/auth", dataForm);
+      const data = await clienteAxios.post("/users/verify", dataForm);
       console.log(data);
       event.target.reset();
     } catch (error) {

@@ -2,7 +2,10 @@ import clienteAxios from "../config/axios";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Modal } from "bootstrap";
 import useForm from "../hooks/useForm";
+import ModalComponent from "../components/ModalComponent";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +13,10 @@ const Login = () => {
   const [dataForm, handleChange] = useForm({
     email: "",
     password: "",
+  });
+
+  const [modalData, setModalData] = useState({
+    title: "",
   });
 
   const handleSubmit = async (event) => {
@@ -20,12 +27,22 @@ const Login = () => {
       event.target.reset();
       navigate("/home");
     } catch (error) {
-      console.log(error);
+      setModalData({ ...modalData, title: error.response.data.msg });
+      console.log("El error es", error.response.data.msg);
+      const myModal = new Modal("#exampleModal");
+      myModal.show();
     }
+  };
+
+  const handleClick = (e) => {
+    const myModal = new Modal("#exampleModal");
+    myModal.show();
   };
 
   return (
     <div className="main">
+      <button onClick={handleClick}>mi botón</button>
+      <ModalComponent title={modalData.title} />
       <div className="container main-container px-4">
         <div className="row d-flex align-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">

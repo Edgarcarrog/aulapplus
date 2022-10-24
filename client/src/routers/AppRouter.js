@@ -14,6 +14,7 @@ const AppRouter = () => {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/home" element={<Home />} />
+          <Route exact path="/verified" element={<UserVerified />} />
           <Route exact path="/verified/:token" element={<UserVerified />} />
           {/* <Route path="*" element={<Error />} /> */}
         </Routes>
