@@ -15,12 +15,12 @@ exports.authUser = (req, res) => {
   return User.findOne({ email })
     .then((user) => {
       //console.log(user);
-      /* if (user && !user.verified)
-        throw new Error("El correo no ha sido verificado"); */
+      if (user && !user.verified)
+        throw new Error("El correo no ha sido verificado.");
 
       const correctPass =
         user === null ? false : bcrypt.compareSync(password, user.password);
-      if (!correctPass) throw new Error("Usuario y/o password incorrectos");
+      if (!correctPass) throw new Error("Usuario y/o password incorrectos.");
 
       const userId = user.id;
       const token = generateToken(userId, "30d");
@@ -86,7 +86,6 @@ exports.sendMailToken = (req, res) => {
         .json({ msg: "Correo de verificación enviado", user });
     })
     .catch((error) => {
-      console.log(error);
       return res.status(400).json({ msg: error.message });
     });
 };
