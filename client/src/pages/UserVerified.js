@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Spinner from "../components/Spinner";
-import VerifyForm from "../components/VerifyForm";
+/* import Spinner from "../components/Spinner";
+import VerifyForm from "../components/modals/VerifyForm"; */
 import clienteAxios from "../config/axios";
 
 const UserVerified = () => {
@@ -28,9 +28,9 @@ const UserVerified = () => {
   return (
     <div className="main">
       <div className="container main-container px-4">
-        <div className="row d-flex align-content-around m-0 principal">
+        {/* <div className="row d-flex align-content-around m-0 principal">
           {loading ? <Spinner /> : <VerifyForm />}
-        </div>
+        </div> */}
       </div>
     </div>
   );

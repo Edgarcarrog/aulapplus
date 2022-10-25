@@ -4,12 +4,13 @@ import Button from "../components/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Modal } from "bootstrap";
 import useForm from "../hooks/useForm";
-import ModalComponent from "../components/ModalComponent";
+import ModalComponent from "../components/modals/ModalComponent";
 import { useState } from "react";
+import VerifyMail from "../components/modals/VerifyMail";
+import ErrorModal from "../components/modals/ErrorModal";
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [dataForm, handleChange] = useForm({
     email: "",
     password: "",
@@ -17,6 +18,7 @@ const Login = () => {
 
   const [modalData, setModalData] = useState({
     title: "",
+    children: null,
   });
 
   const handleSubmit = async (event) => {
@@ -27,22 +29,34 @@ const Login = () => {
       event.target.reset();
       navigate("/home");
     } catch (error) {
-      setModalData({ ...modalData, title: error.response.data.msg });
-      console.log("El error es", error.response.data.msg);
+      switch (error.response.data.msg) {
+        case "El correo no ha sido verificado.":
+          setModalData({
+            ...modalData,
+            title: error.response.data.msg,
+            children: <VerifyMail email={dataForm.email} />,
+          });
+          break;
+        case "Usuario y/o password incorrectos.":
+          setModalData({
+            ...modalData,
+            title: error.response.data.msg,
+            children: <ErrorModal />,
+          });
+          break;
+        default:
+          console.log(`Sorry`);
+      }
       const myModal = new Modal("#exampleModal");
       myModal.show();
     }
   };
 
-  const handleClick = (e) => {
-    const myModal = new Modal("#exampleModal");
-    myModal.show();
-  };
-
   return (
     <div className="main">
-      <button onClick={handleClick}>mi botón</button>
-      <ModalComponent title={modalData.title} />
+      <ModalComponent title={modalData.title}>
+        {modalData.children}
+      </ModalComponent>
       <div className="container main-container px-4">
         <div className="row d-flex align-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">

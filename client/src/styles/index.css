@@ -226,6 +226,13 @@ body {
   color: #fff;
 }
 
+.modal__icon {
+  font-size: 4rem;
+  margin: 0 auto;
+  max-width: min-content;
+  color: #A62B85;
+}
+
 h3 {
   font-size: 1.7rem;
 }
