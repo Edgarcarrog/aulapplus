@@ -226,6 +226,10 @@ body {
   color: #fff;
 }
 
+.modal-title {
+  text-align: center;
+}
+
 .modal__icon {
   font-size: 4rem;
   margin: 0 auto;

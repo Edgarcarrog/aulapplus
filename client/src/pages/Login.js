@@ -4,8 +4,9 @@ import Button from "../components/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Modal } from "bootstrap";
 import useForm from "../hooks/useForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VerifyMailModal from "../components/modals/VerifyMailModal";
+import ModalComponent from "../components/modals/ModalComponent";
 import ErrorModal from "../components/modals/ErrorModal";
 
 const Login = () => {
@@ -15,14 +16,7 @@ const Login = () => {
     password: "",
   });
 
-  const [modal, setModal] = useState(null);
-
-  useEffect(() => {
-    if (modal) {
-      const myModal = new Modal("#myModal");
-      myModal.show();
-    }
-  }, [modal]);
+  const [modalData, setModalData] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,29 +26,34 @@ const Login = () => {
       event.target.reset();
       navigate("/home");
     } catch (error) {
-      console.log(error.response.data.msg);
+      const myModal = new Modal("#myModal");
+      // console.log(error.response.data.msg);
+      //-------selecciona el modal a mostrar dependiendo del error
       switch (error.response.data.msg) {
         case "El correo no ha sido verificado.":
-          setModal(
+          setModalData(
             <VerifyMailModal
               title={error.response.data.msg}
               email={dataForm.email}
-              // myModal={myModal}
+              myModal={myModal}
             />
           );
           break;
         case "Usuario o password incorrecto.":
-          setModal(<ErrorModal title={error.response.data.msg} />);
+          setModalData(<ErrorModal title={error.response.data.msg} />);
           break;
         default:
-          setModal(<ErrorModal title="Hubo un error. Inténtalo nuevamente." />);
+          setModalData(
+            <ErrorModal title="Hubo un error. Inténtalo nuevamente." />
+          );
       }
+      myModal.show();
     }
   };
 
   return (
     <div className="main">
-      {modal ? modal : null}
+      <ModalComponent>{modalData}</ModalComponent>
       <div className="container main-container px-4">
         <div className="row d-flex align-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">
