@@ -1,7 +1,17 @@
-import { BiErrorAlt } from "react-icons/bi";
+import clienteAxios from "../../config/axios";
 
-//modal que se mostrará cuando haya un error al hacer una petición a la api
-const ErrorModal = ({ title }) => {
+const VerifyMailModal = ({ email, title, myModal }) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const data = await clienteAxios.post("/users/verify", { email });
+      myModal.hide();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className="modal fade"
@@ -24,9 +34,16 @@ const ErrorModal = ({ title }) => {
             ></button>
           </div>
           <div className="modal-body">
-            <div className="modal__icon">
-              <BiErrorAlt />
-            </div>
+            <form>
+              <span>
+                Enviaremos un enlace para la activar tu cuenta al siguiente
+                correo:
+              </span>
+              <br />
+              <span>
+                <strong>{email}</strong>
+              </span>
+            </form>
           </div>
           <div className="modal-footer">
             <button
@@ -34,7 +51,14 @@ const ErrorModal = ({ title }) => {
               className="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Cerrar
+              Cancelar
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            >
+              Enviar
             </button>
           </div>
         </div>
@@ -43,4 +67,4 @@ const ErrorModal = ({ title }) => {
   );
 };
 
-export default ErrorModal;
+export default VerifyMailModal;

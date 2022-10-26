@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import useForm from "../hooks/useForm";
+import ModalComponent from "../components/modals/ModalComponent";
+import { Modal } from "bootstrap";
+import { useState } from "react";
+import ErrorModal from "../components/modals/ErrorModal";
 
 const Signup = () => {
   const [dataForm, handleChange] = useForm({
@@ -12,28 +16,39 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [modalData, setModalData] = useState({
+    title: "",
+    children: null,
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       if (dataForm.password.trim().length < 8)
         throw new Error("La contraseña debe contener mínimo 8 caracteres");
-      if (
-        dataForm.password.trim().length !==
-        dataForm.confirmPassword.trim().length
-      )
+      if (dataForm.password.trim() !== dataForm.confirmPassword.trim())
         throw new Error("Las contraseñas deben coincidir");
 
       const data = await clienteAxios.post("/users", dataForm);
       console.log(data);
       event.target.reset();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      setModalData({
+        title: error.message,
+        children: <ErrorModal />,
+      });
+      const myModal = new Modal("#exampleModal");
+      myModal.show();
     }
   };
 
   return (
     <div className="main">
+      <ModalComponent title={modalData.title}>
+        {modalData.children}
+      </ModalComponent>
       <div className="container main-container px-4">
         <div className="row d-flex align-content-around m-0 principal">
           <div className="col-12 col-xl-5 gradient p-0">
