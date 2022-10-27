@@ -21,8 +21,8 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const data = await clienteAxios.post("/users/auth", dataForm);
-      console.log(data);
+      const response = await clienteAxios.post("/users/auth", dataForm);
+      localStorage.setItem("user", response.data.data);
       event.target.reset();
       navigate("/home");
     } catch (error) {

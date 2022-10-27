@@ -21,7 +21,7 @@ const ErrorModal = ({ title }) => {
         </div>
       </div>
       <div className="modal-footer">
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div className="d-grid gap-2 col-6 mx-auto">
           <button
             type="button"
             className="btn btn-secondary"
