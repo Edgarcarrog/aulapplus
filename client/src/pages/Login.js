@@ -1,13 +1,13 @@
 import clienteAxios from "../config/axios";
-import Input from "../components/Input";
-import Button from "../components/Button";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Modal } from "bootstrap";
 import useForm from "../hooks/useForm";
 import { useState } from "react";
 import VerifyMailModal from "../components/modals/VerifyMailModal";
 import ModalComponent from "../components/modals/ModalComponent";
 import ErrorModal from "../components/modals/ErrorModal";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import { Modal } from "bootstrap";
 
 const Login = () => {
   const navigate = useNavigate();

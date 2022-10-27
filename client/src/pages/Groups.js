@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
 
-const Home = () => {
+const Groups = () => {
   return (
     <div className="main">
       <Header />
+      <h1>Grupos</h1>
     </div>
   );
 };
 
-export default Home;
+export default Groups;

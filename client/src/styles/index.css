@@ -237,6 +237,16 @@ body {
   color: #A62B85;
 }
 
+.dropdown {
+  position: relative !important;
+}
+
+.dropdown-menu {
+  background-color: transparent;
+  /* position: absolute !important;
+  left: -50px !important; */
+}
+
 h3 {
   font-size: 1.7rem;
 }
