@@ -237,14 +237,20 @@ body {
   color: #A62B85;
 }
 
-.dropdown {
-  position: relative !important;
-}
-
 .dropdown-menu {
   background-color: transparent;
-  /* position: absolute !important;
-  left: -50px !important; */
+  /* position: absolute !important;*/
+  left: -60px !important;
+}
+
+.dropdown-item {
+  background-color: transparent !important;
+  color: rgb(103, 103, 103) !important;
+}
+
+.dropdown-item:hover {
+  background-color: #027373 !important;
+  color: #fff !important;
 }
 
 h3 {
