@@ -1,3 +1,69 @@
+.welcome-card {
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 500px;
+}
+
+.welcome-card__img {
+  border-radius: 1rem 1rem 0 0;
+  background-image: url("../assets/school.png");
+  height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.welcome-card__body {
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+  background: rgba(227, 227, 227, 0.3);
+  backdrop-filter: blur(5px);
+}
+.welcome-card__body p {
+  font-size: 1rem;
+}
+
+.dropdown-menu {
+  background-color: transparent;
+  /* position: absolute !important;
+  left: -60px !important;*/
+}
+
+.dropdown-item {
+  background-color: transparent !important;
+  color: rgb(103, 103, 103) !important;
+}
+
+.dropdown-item:hover {
+  background-color: #027373 !important;
+  color: #fff !important;
+}
+
+.offcanvas {
+  /* max-width: 250px; */
+}
+
+.btn-main {
+  background-color: #027373;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #a62b85;
+  color: #fff;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.modal__icon {
+  font-size: 4rem;
+  margin: 0 auto;
+  max-width: min-content;
+  color: #a62b85;
+}
+
 .fade-in-left {
   -webkit-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   -moz-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
@@ -216,41 +282,13 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.btn-main {
-  background-color: #027373;
-  color: #fff;
-}
-
-.btn-secondary {
-  background-color: #A62B85;
-  color: #fff;
-}
-
-.modal-title {
-  text-align: center;
-}
-
-.modal__icon {
-  font-size: 4rem;
-  margin: 0 auto;
-  max-width: min-content;
-  color: #A62B85;
-}
-
-.dropdown-menu {
-  background-color: transparent;
-  /* position: absolute !important;*/
-  left: -60px !important;
-}
-
-.dropdown-item {
-  background-color: transparent !important;
-  color: rgb(103, 103, 103) !important;
-}
-
-.dropdown-item:hover {
-  background-color: #027373 !important;
-  color: #fff !important;
+.main {
+  background: url(../assets/bgimage2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
 }
 
 h3 {
@@ -259,15 +297,6 @@ h3 {
 
 p {
   font-size: 1.5rem;
-}
-
-.main {
-  background: url(../assets/bgimage2.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  height: 100%;
-  position: relative;
 }
 
 .main-container {

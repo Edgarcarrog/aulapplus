@@ -1,7 +1,15 @@
 import React from "react";
+import Header from "../components/Header";
 
 const Groups = () => {
-  return <h1>Grupos</h1>;
+  return (
+    <div className="main">
+      <div className="container-fluid container-lg">
+        <Header />
+        <h1>Grupos</h1>
+      </div>
+    </div>
+  );
 };
 
 export default Groups;

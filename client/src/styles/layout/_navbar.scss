@@ -1,8 +1,8 @@
 
 .dropdown-menu {
   background-color: transparent;
-  /* position: absolute !important;*/
-  left: -60px !important;
+  /* position: absolute !important;
+  left: -60px !important;*/
 }
 
 .dropdown-item {
@@ -13,4 +13,8 @@
 .dropdown-item:hover {
   background-color: $color-primary !important;
   color: $color-white !important;
+}
+
+.offcanvas {
+    /* max-width: 250px; */
 }

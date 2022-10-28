@@ -1,13 +1,14 @@
 @import "abstracts/variables";
 
-@import "base/animations";
-@import "base/base";
+@import "pages/home";
+
+@import "layout/navbar";
 
 @import "components/button";
 @import "components/modal";
 
-@import "layout/navbar";
-
+@import "base/animations";
+@import "base/base";
 
 h3 {
   font-size: 1.7rem;
@@ -15,15 +16,6 @@ h3 {
 
 p {
   font-size: 1.5rem;
-}
-
-.main {
-  background: url(../assets/bgimage2.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  height: 100%;
-  position: relative;
 }
 
 .main-container {

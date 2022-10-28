@@ -1,7 +1,7 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -22,7 +22,7 @@ const Navbar = () => {
           </button>
           <div
             className="offcanvas offcanvas-end"
-            tabindex="-1"
+            tabIndex="-1"
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
           >
@@ -40,9 +40,9 @@ const Navbar = () => {
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" to="/home">
+                  <NavLink className="nav-link" aria-current="page" to="/home">
                     Inicio
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink
@@ -54,15 +54,14 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <NavLink
                     className="nav-link dropdown-toggle"
-                    href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Mi cuenta
-                  </a>
+                  </NavLink>
                   <ul className="dropdown-menu">
                     <li>
                       <NavLink className="dropdown-item" to="/">

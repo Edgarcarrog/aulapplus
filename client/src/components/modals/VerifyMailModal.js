@@ -44,7 +44,7 @@ const VerifyMailModal = ({ email, title, myModal }) => {
         </button>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-main"
           onClick={handleSubmit}
         >
           Enviar

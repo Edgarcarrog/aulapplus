@@ -20,7 +20,7 @@ const AppRouter = () => {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route exact path="/home" element={<Home />} />
-            <Route exact path="/groups" element={<Groups/>} />
+            <Route exact path="/groups" element={<Groups />} />
           </Route>
           <Route exact path="/verified" element={<UserVerified />} />
           <Route exact path="/verified/:token" element={<UserVerified />} />
