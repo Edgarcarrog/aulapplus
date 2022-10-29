@@ -1,10 +1,21 @@
+import { Modal } from "bootstrap";
 import React from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
+import CreateGroupModal from "../components/modals/CreateGroupModal";
+import ModalComponent from "../components/modals/ModalComponent";
 
 const Home = () => {
+  const myModal = new Modal("#myModal");
+  const showModal = () => {
+    myModal.show();
+  };
+
   return (
     <div className="main">
+      <ModalComponent>
+        <CreateGroupModal myModal={myModal} />
+      </ModalComponent>
       <div className="container-fluid container-lg">
         <Header />
         <main>
@@ -15,7 +26,9 @@ const Home = () => {
                 <div className="welcome-card__img"></div>
                 <div className="welcome-card__body p-2">
                   <p className="m-0">Crea un grupo para empezar</p>
-                  <Button className="btn-main my-2">Crear grupo</Button>
+                  <Button className="btn-main my-2" handleClick={showModal}>
+                    Crear grupo
+                  </Button>
                 </div>
               </section>
             </div>
