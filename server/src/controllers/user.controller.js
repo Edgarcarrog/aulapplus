@@ -14,16 +14,15 @@ exports.authUser = (req, res) => {
 
   return User.findOne({ email })
     .then((user) => {
-      //console.log(user);
       if (user && !user.verified)
         throw new Error("El correo no ha sido verificado.");
 
       const correctPass =
         user === null ? false : bcrypt.compareSync(password, user.password);
-      if (!correctPass) throw new Error("Usuario y/o password incorrectos.");
+      if (!correctPass) throw new Error("Usuario o password incorrecto.");
 
       const userId = user.id;
-      const token = generateToken(userId, "30d");
+      const token = generateToken(userId, "2m");
       return res.status(200).json({ msg: "Bienvenido", data: token });
     })
     .catch((error) => {
@@ -40,8 +39,6 @@ exports.createUser = (req, res) => {
   }
   //extraer email, name y password
   const { email, name, password } = req.body;
-  const token = generateToken({ name, email }, "15m");
-  const template = getTemplate(name, token);
 
   return User.findOne({ email })
     .then((user) => {
@@ -51,6 +48,8 @@ exports.createUser = (req, res) => {
       return user.save();
     })
     .then((user) => {
+      const token = generateToken({ name, email }, "15m");
+      const template = getTemplate(name, token);
       sendEmail(email, "Confirma tu correo", template).then(() => {
         console.log("Correo de verificación enviado");
       });
@@ -108,6 +107,27 @@ exports.verifyEmail = (req, res) => {
         throw new Error("El correo ya ha sido verificado anteriormente");
       return User.findOneAndUpdate({ email }, { verified: true });
     })
+    .then((user) => {
+      return res.status(200).json({ user });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      return res.status(400).send(error.message);
+    });
+};
+
+exports.updateUser = (req, res) => {
+  const { token } = req.params;
+  const { name } = req.body;
+  const tokenGotten = verifyToken(token);
+  console.log("tokenGotten", tokenGotten);
+  const id = tokenGotten.payload;
+
+  if (!id) {
+    return res.status(403).send("Hubo un error.");
+  }
+
+  return User.findByIdAndUpdate(id, { name })
     .then((user) => {
       return res.status(200).json({ user });
     })

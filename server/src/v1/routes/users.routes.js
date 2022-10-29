@@ -6,10 +6,14 @@ const {
   createUser,
   verifyEmail,
   sendMailToken,
+  updateUser,
 } = require("../../controllers/user.controller");
 
 // api/users
 router
+  //ruta para activar la cuenta del usuario desde su correo
+  .get("/users/verify/:token", verifyEmail)
+
   .post(
     "/users",
     [
@@ -35,8 +39,7 @@ router
     sendMailToken
   )
 
-  //ruta para activar la cuenta del usuario desde su correo
-  .get("/users/verify/:token", verifyEmail);
+  .put("/users/:token", updateUser);
 
 //   .delete("/users/:userId", auth, deleteUser);
 
