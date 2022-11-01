@@ -5,10 +5,7 @@ const app = express();
 const cors = require("cors");
 const connectDB = require("./database/db");
 const userRoutes = require("./v1/routes/users.routes");
-/* 
-const followRoutes = require("./v1/routes/follows.routes");
-const hobbieRoutes = require("./v1/routes/hobbies.routes");
-const postRoutes = require("./v1/routes/posts.routes"); */
+const groupRoutes = require("./v1/routes/groups.routes");
 
 //Conectarse a la base de datos
 connectDB();
@@ -22,6 +19,7 @@ app.use(express.json());
 
 //routers
 app.use("/api/v1", userRoutes);
+app.use("/api/v1", groupRoutes);
 /* 
 app.use("/api/v1", followRoutes);
 app.use("/api/v1", hobbieRoutes);

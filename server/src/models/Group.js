@@ -1,14 +1,13 @@
-
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const groupSchema = Schema(
   {
-    name: {
+    grade: {
       type: String,
       required: true,
       trim: true,
     },
-    grade: {
+    group: {
       type: String,
       required: true,
       trim: true,
@@ -29,4 +28,4 @@ const groupSchema = Schema(
   }
 );
 
-module.exports = model('Group', groupSchema);
+module.exports = model("Group", groupSchema);

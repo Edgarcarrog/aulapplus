@@ -22,7 +22,7 @@ exports.authUser = (req, res) => {
       if (!correctPass) throw new Error("Usuario o password incorrecto.");
 
       const userId = user.id;
-      const token = generateToken(userId, "2m");
+      const token = generateToken(userId, "60d");
       return res.status(200).json({ msg: "Bienvenido", data: token });
     })
     .catch((error) => {
@@ -116,6 +116,7 @@ exports.verifyEmail = (req, res) => {
     });
 };
 
+//TODO revisar si habrá más datos del body
 exports.updateUser = (req, res) => {
   const { token } = req.params;
   const { name } = req.body;

@@ -1,34 +1,31 @@
-
 const router = require("express").Router();
 const { check } = require("express-validator");
 
 const {
   createGroup,
-  getOneGroup,
+  /* getOneGroup,
   getGroups,
   updateGroup,
-  deleteGroup,
-} = require("../controllers/groupController");
+  deleteGroup, */
+} = require("../../controllers/group.controller");
 
 // api/group
 router.post(
-  "/",
-  auth,
+  "/groups/:token",
   [
-    check("name", "Agrega el nombre del grupo").notEmpty(),
+    check("group", "Agrega el nombre del grupo").notEmpty(),
     check("grade", "Agrega el grado").notEmpty(),
     check("cicle", "Agrega el ciclo").notEmpty(),
   ],
   createGroup
 );
+/* 
+router.get("/:id", getOneGroup);
 
-router.get("/:id", auth, getOneGroup);
-
-router.get("/", auth, getGroups);
+router.get("/", getGroups);
 
 router.put(
   "/:id",
-  auth,
   [
     check("name", "Agrega el nombre del grupo").notEmpty(),
     check("grade", "Agrega el grado").notEmpty(),
@@ -37,6 +34,6 @@ router.put(
   updateGroup
 );
 
-router.delete("/:id", auth, deleteGroup);
+router.delete("/:id", deleteGroup); */
 
 module.exports = router;
