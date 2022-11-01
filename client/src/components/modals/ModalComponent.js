@@ -1,6 +1,5 @@
 const ModalComponent = ({ children, ...rest }) => {
-  console.log("Rest:", rest);
-  console.log("Children:", children);
+  
   return (
     <div
       className="modal fade"

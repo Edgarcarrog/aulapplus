@@ -6,7 +6,12 @@ const useForm = (data) => {
   const handleChange = (event) => {
     setDataForm({ ...dataForm, [event.target.name]: event.target.value });
   };
-  return [dataForm, handleChange];
+
+  const resetDataForm = () => {
+    setDataForm(data);
+  };
+
+  return [dataForm, handleChange, resetDataForm];
 };
 
 export default useForm;

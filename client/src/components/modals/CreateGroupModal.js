@@ -5,7 +5,7 @@ import clienteAxios from "../../config/axios";
 const CreateGroupModal = ({ title, myModal }) => {
   const [disabled, setDisabled] = useState("disabled");
 
-  const [dataForm, handleChange] = useForm({
+  const [dataForm, handleChange, resetDataForm] = useForm({
     grade: "",
     group: "",
     cicle: "",
@@ -21,8 +21,8 @@ const CreateGroupModal = ({ title, myModal }) => {
     event.preventDefault();
     try {
       const user = localStorage.getItem("user");
-      const data = await clienteAxios.post(`/groups/${user}`, dataForm);
-      console.log(data);
+      await clienteAxios.post(`/groups/${user}`, dataForm);
+      resetDataForm();
       myModal.hide();
     } catch (error) {
       console.log(error);
