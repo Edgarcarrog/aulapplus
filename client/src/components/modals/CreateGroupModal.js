@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useForm from "../../hooks/useForm";
+import clienteAxios from "../../config/axios";
 
-const CreateGroupModal = ({ email, title, myModal }) => {
+const CreateGroupModal = ({ title, myModal }) => {
+  const [disabled, setDisabled] = useState("disabled");
+
+  const [dataForm, handleChange] = useForm({
+    grade: "",
+    group: "",
+    cicle: "",
+  });
+
+  useEffect(() => {
+    if (dataForm.grade && dataForm.group && dataForm.cicle) {
+      setDisabled("");
+    }
+  }, [dataForm]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     myModal.hide();
-    /* try {
-          const data = await clienteAxios.post("/users/verify", { email });
-          myModal.hide();
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        } */
+    try {
+      const data = await clienteAxios.post("/users/verify", dataForm);
+      myModal.hide();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -29,54 +45,6 @@ const CreateGroupModal = ({ email, title, myModal }) => {
       <div className="modal-body">
         <form>
           <div className="mb-3">
-            <label htmlFor="group" className="col-form-label">
-              Grupo
-            </label>
-            <select
-              className="form-select"
-              id="group"
-              required
-              name="name"
-              // onChange={handleChange}
-              // value={group.name}
-            >
-              <option disabled value="">
-                Selecciona un grupo
-              </option>
-              <option value="A">"A"</option>
-              <option value="B">"B"</option>
-              <option value="C">"C"</option>
-              <option value="D">"D"</option>
-              <option value="E">"E"</option>
-            </select>
-            <div className="invalid-feedback">Please select a valid state.</div>
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="ciclo" className="col-form-label">
-              Ciclo Escolar
-            </label>
-            <select
-              className="form-select"
-              id="ciclo"
-              required
-              name="cicle"
-              // onChange={handleChange}
-              // value={group.cicle}
-            >
-              <option disabled value="">
-                Selecciona un ciclo escolar
-              </option>
-              <option value="2020-2021">2020-2021</option>
-              <option value="2021-2022">2021-2022</option>
-              <option value="2022-2023">2022-2023</option>
-              <option value="2023-2024">2023-2024</option>
-              <option value="2024-2025">2024-2025</option>
-            </select>
-            <div className="invalid-feedback">Please select a valid state.</div>
-          </div>
-
-          <div className="mb-3">
             <label htmlFor="grade" className="col-form-label">
               Grado
             </label>
@@ -85,8 +53,8 @@ const CreateGroupModal = ({ email, title, myModal }) => {
               id="grade"
               required
               name="grade"
-              // onChange={handleChange}
-              // value={group.grade}
+              onChange={handleChange}
+              value={dataForm.grade}
             >
               <option disabled value="">
                 Selecciona un grado
@@ -100,16 +68,55 @@ const CreateGroupModal = ({ email, title, myModal }) => {
             </select>
             <div className="invalid-feedback">Please select a valid state.</div>
           </div>
+          <div className="mb-3">
+            <label htmlFor="group" className="col-form-label">
+              Grupo
+            </label>
+            <select
+              className="form-select"
+              id="group"
+              required
+              name="group"
+              onChange={handleChange}
+              value={dataForm.group}
+            >
+              <option disabled value="">
+                Selecciona un grupo
+              </option>
+              <option value="A">"A"</option>
+              <option value="B">"B"</option>
+              <option value="C">"C"</option>
+              <option value="D">"D"</option>
+              <option value="E">"E"</option>
+            </select>
+            <div className="invalid-feedback">Please select a valid state.</div>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="cicle" className="col-form-label">
+              Ciclo Escolar
+            </label>
+            <select
+              className="form-select"
+              id="cicle"
+              required
+              name="cicle"
+              onChange={handleChange}
+              value={dataForm.cicle}
+            >
+              <option disabled value="">
+                Selecciona un ciclo escolar
+              </option>
+              <option value="2020-2021">2020-2021</option>
+              <option value="2021-2022">2021-2022</option>
+              <option value="2022-2023">2022-2023</option>
+              <option value="2023-2024">2023-2024</option>
+              <option value="2024-2025">2024-2025</option>
+            </select>
+            <div className="invalid-feedback">Please select a valid state.</div>
+          </div>
         </form>
       </div>
       <div className="modal-footer">
-        <button
-          className="btn btn-primary form-control my-2"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Agregar Grupo
-        </button>
         <button
           type="button"
           className="btn btn-secondary"
@@ -117,7 +124,12 @@ const CreateGroupModal = ({ email, title, myModal }) => {
         >
           Cancelar
         </button>
-        <button type="button" className="btn btn-main" onClick={handleSubmit}>
+        <button
+          type="button"
+          className="btn btn-main"
+          disabled={disabled}
+          onClick={handleSubmit}
+        >
           Crear grupo
         </button>
       </div>

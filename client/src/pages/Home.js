@@ -7,6 +7,8 @@ import ModalComponent from "../components/modals/ModalComponent";
 
 const Home = () => {
   const [myModal, setModalData] = useState(null);
+
+  // Asigna a "myModal" un instancia de Modal para mostrar u ocultar
   useEffect(() => {
     setModalData(new Modal("#myModal"));
   }, []);
@@ -17,7 +19,7 @@ const Home = () => {
 
   return (
     <div className="main">
-      <ModalComponent>
+      <ModalComponent data-bs-backdrop="static" data-bs-keyboard="false">
         <CreateGroupModal title="Crear grupo" myModal={myModal} />
       </ModalComponent>
       <div className="container-fluid container-lg">

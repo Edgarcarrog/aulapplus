@@ -1,4 +1,6 @@
-const ModalComponent = ({ children }) => {
+const ModalComponent = ({ children, ...rest }) => {
+  console.log("Rest:", rest);
+  console.log("Children:", children);
   return (
     <div
       className="modal fade"
@@ -6,11 +8,10 @@ const ModalComponent = ({ children }) => {
       tabIndex="-1"
       aria-labelledby="myModalLabel"
       aria-hidden="true"
+      {...rest}
     >
       <div className="modal-dialog">
-        <div className="modal-content">
-          {children}
-        </div>
+        <div className="modal-content">{children}</div>
       </div>
     </div>
   );
