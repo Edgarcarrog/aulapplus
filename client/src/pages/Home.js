@@ -1,5 +1,6 @@
-import { Modal } from "bootstrap";
 import React, { useEffect, useState } from "react";
+import clienteAxios from "../config/axios";
+import { Modal } from "bootstrap";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import CreateGroupModal from "../components/modals/CreateGroupModal";
@@ -10,6 +11,17 @@ const Home = () => {
 
   // Asigna a "myModal" un instancia de Modal para mostrar u ocultar
   useEffect(() => {
+    //TODO:TERMINAR FUNCIÓN
+    const getGroups = async () => {
+      const user = localStorage.getItem("user");
+      try {
+        const myGroups = await clienteAxios.get(`/groups/${user}`);
+        console.log(myGroups);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getGroups();
     setModalData(new Modal("#myModal"));
   }, []);
 

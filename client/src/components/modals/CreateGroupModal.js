@@ -106,11 +106,10 @@ const CreateGroupModal = ({ title, myModal }) => {
               <option disabled value="">
                 Selecciona un ciclo escolar
               </option>
-              <option value="2020-2021">2020-2021</option>
-              <option value="2021-2022">2021-2022</option>
               <option value="2022-2023">2022-2023</option>
               <option value="2023-2024">2023-2024</option>
               <option value="2024-2025">2024-2025</option>
+              <option value="2025-2026">2025-2026</option>
             </select>
             <div className="invalid-feedback">Please select a valid state.</div>
           </div>
@@ -126,8 +125,8 @@ const CreateGroupModal = ({ title, myModal }) => {
         </button>
         <button
           type="button"
-          className="btn btn-main"
-          disabled={disabled}
+          className={`btn btn-main ${disabled}`}
+          // disabled={disabled}
           onClick={handleSubmit}
         >
           Crear grupo

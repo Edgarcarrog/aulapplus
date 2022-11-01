@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   //const navigate = useNavigate();
 
+  // TODO: hacer logout helper
   const handleLogout = () => {
     localStorage.removeItem("user");
   };
