@@ -1,12 +1,16 @@
 import { Modal } from "bootstrap";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import CreateGroupModal from "../components/modals/CreateGroupModal";
 import ModalComponent from "../components/modals/ModalComponent";
 
 const Home = () => {
-  const myModal = new Modal("#myModal");
+  const [myModal, setModalData] = useState(null);
+  useEffect(() => {
+    setModalData(new Modal("#myModal"));
+  }, []);
+
   const showModal = () => {
     myModal.show();
   };
@@ -14,7 +18,7 @@ const Home = () => {
   return (
     <div className="main">
       <ModalComponent>
-        <CreateGroupModal myModal={myModal} />
+        <CreateGroupModal title="Crear grupo" myModal={myModal} />
       </ModalComponent>
       <div className="container-fluid container-lg">
         <Header />
