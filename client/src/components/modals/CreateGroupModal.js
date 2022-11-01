@@ -19,11 +19,11 @@ const CreateGroupModal = ({ title, myModal }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    myModal.hide();
     try {
-      const data = await clienteAxios.post("/users/verify", dataForm);
-      myModal.hide();
+      const user = localStorage.getItem("user");
+      const data = await clienteAxios.post(`/groups/${user}`, dataForm);
       console.log(data);
+      myModal.hide();
     } catch (error) {
       console.log(error);
     }
