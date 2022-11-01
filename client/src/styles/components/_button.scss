@@ -1,9 +1,20 @@
 .btn-main {
-    background-color: $color-primary;
-    color: $color-white;
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+.btn-main:hover {
+  background-color: $color-primary-dark;
+  color: $color-white;
+}
+
+.btn-main:disabled {
+  background-color: $color-primary !important;
+  opacity: 0.7;
+  color: $color-white;
 }
 
 .btn-secondary {
-    background-color: $color-secondary;
-    color: $color-white;
+  background-color: $color-secondary;
+  color: $color-white;
 }

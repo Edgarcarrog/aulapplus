@@ -125,8 +125,8 @@ const CreateGroupModal = ({ title, myModal }) => {
         </button>
         <button
           type="button"
-          className={`btn btn-main ${disabled}`}
-          // disabled={disabled}
+          className="btn btn-main"
+          disabled={disabled}
           onClick={handleSubmit}
         >
           Crear grupo
