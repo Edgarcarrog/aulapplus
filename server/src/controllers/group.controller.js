@@ -14,7 +14,6 @@ exports.createGroup = (req, res) => {
   const { group, grade, cicle } = req.body;
   const { token } = req.params;
   const tokenGotten = verifyToken(token);
-  console.log("tokenGotten", tokenGotten);
   const teacherId = tokenGotten.payload;
 
   return Group.findOne({
@@ -36,12 +35,9 @@ exports.createGroup = (req, res) => {
       console.log(error);
       return res.status(400).json({ msg: error.message });
     });
-
-  User.findByIdAndUpdate(teacherId, { $push: { groups: group._id } });
-  return res.status(200).json(group);
 };
 
-exports.getOneGroup = async (req, res) => {
+exports.getOneGroup = (req, res) => {
   //extraer id del profesor
   /* const Id = req.params.id;
   try {
@@ -56,19 +52,24 @@ exports.getOneGroup = async (req, res) => {
 
 exports.getGroups = async (req, res) => {
   //extraer id del profesor
-  /*const teacherId = req.user.id;
-   try {
-    const groups = await Group.find({ teacher: teacherId }).sort({
+  const { token } = req.params;
+  const tokenGotten = verifyToken(token);
+  console.log(tokenGotten);
+  const teacherId = tokenGotten.payload;
+
+  Group.find({ teacher: teacherId })
+    .sort({
       grade: 1,
       name: 1,
       cicle: 1,
+    })
+    .then((groups) => {
+      //console.log(groups);
+      return res.status(200).json(groups);
+    })
+    .catch((error) => {
+      console.log(error);
     });
-    return res.status(200).json(groups);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send("Hubo un error");
-  } */
-  return res.status(200).json(group);
 };
 
 exports.updateGroup = async (req, res) => {
