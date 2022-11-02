@@ -1,38 +1,46 @@
 .main-card {
-  margin: 2rem auto;
-  width: 80%;
-  max-width: 300px;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 300px;
+    border: 1px solid $color-grey;
+    border-radius: 1rem;
+    transition: $transition;
+}
+
+.main-card:hover {
+    box-shadow: 0 5px 10px rgba(53, 53, 53, 0.4);
 }
 
 .main-card__header {
-  border-radius: 1rem 1rem 0 0;
-  background-image: url("../assets/logo_bg.png");
-  height: 150px;
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
+    border-radius: 1rem 1rem 0 0;
+    background-image: url("../assets/logo_bg.png");
+    height: 150px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .main-card__title {
-  margin: 0;
-  padding: 1.5rem 6rem 0 1rem;
-  font-size: $text-md;
-  color: $color-white;
+    margin: 0;
+    padding: 1.5rem 6rem 0 1rem;
+    font-size: $text-md;
+    color: $color-white;
 }
 
 .main-card__body {
-  border-radius: 0 0 1rem 1rem;
-  font-size: $text-sm;
-  text-align: center;
-  font-weight: 600;
-  background: $color-light-transparent;
-  backdrop-filter: blur(5px);
-  p {
+    border-radius: 0 0 1rem 1rem;
     font-size: $text-sm;
-  }
+    text-align: center;
+    font-weight: 600;
+    background: $color-light-transparent;
+    backdrop-filter: blur(5px);
+
+    p {
+        font-size: $text-sm;
+    }
 }
 
 .main-card__icon {
-  font-size: 60px;
-  color: $color-primary;
+    font-size: 60px;
+    color: $color-primary;
 }
