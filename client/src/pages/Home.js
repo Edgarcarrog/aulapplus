@@ -41,7 +41,7 @@ const Home = () => {
           <div className="row m-0">
             <div className="col-12 justify-content-end m-0 p-0">
               <h1>Aulapplus</h1>
-              <Card handleClick={showModal} />
+              <Card title="Crea un grupo" handleClick={showModal} />
             </div>
           </div>
         </main>

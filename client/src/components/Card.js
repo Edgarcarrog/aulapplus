@@ -1,11 +1,11 @@
 import Button from "../components/Button";
 import { AiFillPlusCircle } from "react-icons/ai";
 
-const Card = ({ handleClick }) => {
+const Card = ({ title, handleClick }) => {
   return (
-    <section className="main-card">
+    <section className="main-card" onClick={handleClick}>
       <div className="main-card__header">
-        <h3 className="main-card__title">Introducción a las Matemáticas Elementales</h3>
+        <h3 className="main-card__title">{title}</h3>
       </div>
       <div className="main-card__body p-5">
         <AiFillPlusCircle className="main-card__icon" />
