@@ -4,7 +4,8 @@ const { check } = require("express-validator");
 const {
   createGroup,
   getGroups,
-  /* getOneGroup,
+  getOneGroup,
+  /* 
   updateGroup,
   deleteGroup, */
 } = require("../../controllers/group.controller");
@@ -21,10 +22,10 @@ router
     createGroup
   )
 
-  .get("/groups/:token", getGroups);
-/* 
-router.get("/:id", getOneGroup);
+  .get("/groups/:token", getGroups)
 
+  .get("/groups/oneGroup/:id", getOneGroup);
+/*
 
 router.put(
   "/:id",

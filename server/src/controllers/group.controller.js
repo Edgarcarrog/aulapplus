@@ -22,11 +22,11 @@ exports.createGroup = (req, res) => {
     cicle,
     teacher: teacherId,
   })
-    .then((newGroup) => {
-      if (newGroup) throw new Error("Ya existe el grupo");
-      let group = new Group(req.body);
-      group.teacher = teacherId;
-      return group.save();
+    .then((groupFound) => {
+      if (groupFound) throw new Error("Ya existe el grupo");
+      let newGroup = new Group({ grade, group, cicle });
+      newGroup.teacher = teacherId;
+      return newGroup.save();
     })
     .then((newGroup) => {
       return res.status(200).json(newGroup);
@@ -39,15 +39,16 @@ exports.createGroup = (req, res) => {
 
 exports.getOneGroup = (req, res) => {
   //extraer id del profesor
-  /* const Id = req.params.id;
-  try {
-    const group = await Group.findById(Id);
-    return res.status(200).json(group);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send("Hubo un error");
-  } */
-  return res.status(200).json(group);
+  const { id } = req.params;
+  Group.findById(id)
+    .then((group) => {
+      if (!group) throw new Error("No se encontró el grupo");
+      return res.status(200).json(group);
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({ msg: error.message });
+    });
 };
 
 exports.getGroups = async (req, res) => {
@@ -58,6 +59,7 @@ exports.getGroups = async (req, res) => {
   const teacherId = tokenGotten.payload;
 
   Group.find({ teacher: teacherId })
+    .select(["group", "grade", "cicle"])
     .sort({
       grade: 1,
       name: 1,

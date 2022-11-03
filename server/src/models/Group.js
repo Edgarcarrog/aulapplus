@@ -17,6 +17,9 @@ const groupSchema = Schema(
       required: true,
       trim: true,
     },
+    subjects: {
+      type: [String],
+    },
     teacher: {
       type: Schema.Types.ObjectId,
       ref: "User",
