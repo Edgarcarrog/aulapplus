@@ -6,12 +6,12 @@ import clienteAxios from "../config/axios";
 
 const UserVerified = () => {
   const { token } = useParams();
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     clienteAxios
       .get(`/users/verify/${token}`)
       .then((response) => {
@@ -21,7 +21,7 @@ const UserVerified = () => {
       .catch((error) => {
         console.log(error.response.data);
         setErrorMsg(error.response.data);
-        setLoading(false);
+        // setLoading(false);
       });
   }, []);
 

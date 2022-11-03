@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import groupReducer from "../features/group/groupSlice";
+import teacherReducer from "../features/teacher/teacherSlice";
 
 export const store = configureStore({
-  reducer: { groups: groupReducer },
+  reducer: { teacher: teacherReducer },
 });

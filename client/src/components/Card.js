@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+
 import { AiFillPlusCircle } from "react-icons/ai";
 
 const Card = ({ title, handleClick }) => {

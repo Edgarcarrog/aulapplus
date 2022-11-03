@@ -49,9 +49,9 @@ const Navbar = () => {
                   <NavLink
                     className="nav-link"
                     aria-current="page"
-                    to="/groups"
+                    to="/students"
                   >
-                    Grupos
+                    Alumnos
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">

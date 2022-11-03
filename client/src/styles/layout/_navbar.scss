@@ -1,20 +1,14 @@
 .dropdown-menu {
-  background-color: transparent;
   margin: 0 !important;
-  /* position: absolute !important;
-  left: -60px !important;*/
+  background-color: $color-light-transparent;
 }
 
 .dropdown-item {
   background-color: transparent !important;
-  color: rgb(103, 103, 103) !important;
+  color: $color-black !important;
 }
 
 .dropdown-item:hover {
   background-color: $color-primary !important;
   color: $color-white !important;
-}
-
-.offcanvas {
-  /* max-width: 250px; */
 }

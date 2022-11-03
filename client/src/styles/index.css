@@ -1,22 +1,16 @@
 .dropdown-menu {
-  background-color: transparent;
   margin: 0 !important;
-  /* position: absolute !important;
-  left: -60px !important;*/
+  background-color: rgba(245, 245, 245, 0.8);
 }
 
 .dropdown-item {
   background-color: transparent !important;
-  color: rgb(103, 103, 103) !important;
+  color: #000 !important;
 }
 
 .dropdown-item:hover {
   background-color: #027373 !important;
   color: #fff !important;
-}
-
-.offcanvas {
-  /* max-width: 250px; */
 }
 
 .btn-main {
@@ -86,8 +80,8 @@
   font-size: 1rem;
   text-align: center;
   font-weight: 600;
-  background: rgba(227, 227, 227, 0.1);
-  backdrop-filter: blur(5px);
+  background: rgba(245, 245, 245, 0.8);
+  backdrop-filter: blur(2px);
 }
 .main-card__body p {
   font-size: 1rem;
