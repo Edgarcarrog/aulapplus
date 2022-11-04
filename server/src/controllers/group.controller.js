@@ -75,15 +75,10 @@ exports.getGroups = async (req, res) => {
 };
 
 exports.updateGroup = async (req, res) => {
-  //revisar si hay errores
-  /* const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   //extraer email y password
-  const { name, grade, cicle } = req.body;
+  const { subjectsArray } = req.body;
   const groupId = req.params.id;
+  console.log(req.body, groupId);
 
   try {
     let group = await Group.findById(groupId);
@@ -91,18 +86,14 @@ exports.updateGroup = async (req, res) => {
     if (!group) {
       return res.status(400).json({ msg: "El grupo no existe" });
     }
-    if (group.teacher.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "No autorizado" });
-    }
 
-    group = await Group.findByIdAndUpdate(groupId, req.body, { new: true });
+    group = await Group.findByIdAndUpdate(groupId, { subjects: subjectsArray });
 
     return res.status(200).json(group);
   } catch (error) {
     console.log(error);
     return res.status(500).send("Hubo un error");
-  } */
-  return res.status(200).json(group);
+  }
 };
 
 exports.deleteGroup = async (req, res) => {

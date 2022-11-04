@@ -5,8 +5,8 @@ const {
   createGroup,
   getGroups,
   getOneGroup,
-  /* 
   updateGroup,
+  /*
   deleteGroup, */
 } = require("../../controllers/group.controller");
 
@@ -24,7 +24,9 @@ router
 
   .get("/groups/:token", getGroups)
 
-  .get("/groups/oneGroup/:id", getOneGroup);
+  .get("/groups/oneGroup/:id", getOneGroup)
+
+  .put("/groups/addSubjects/:id", updateGroup);
 /*
 
 router.put(
