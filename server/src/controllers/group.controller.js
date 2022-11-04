@@ -41,6 +41,7 @@ exports.getOneGroup = (req, res) => {
   //extraer id del profesor
   const { id } = req.params;
   Group.findById(id)
+    .select(["group", "grade", "cicle", "subjects"])
     .then((group) => {
       if (!group) throw new Error("No se encontró el grupo");
       return res.status(200).json(group);
@@ -55,8 +56,9 @@ exports.getGroups = async (req, res) => {
   //extraer id del profesor
   const { token } = req.params;
   const tokenGotten = verifyToken(token);
-  console.log(tokenGotten);
   const teacherId = tokenGotten.payload;
+
+  if (!teacherId) throw new Error("Hubo un error");
 
   Group.find({ teacher: teacherId })
     .select(["group", "grade", "cicle"])
@@ -66,34 +68,29 @@ exports.getGroups = async (req, res) => {
       cicle: 1,
     })
     .then((groups) => {
-      //console.log(groups);
       return res.status(200).json(groups);
     })
     .catch((error) => {
       console.log(error);
+      return res.status(400).json({ msg: error.message });
     });
 };
 
-exports.updateGroup = async (req, res) => {
-  //extraer email y password
-  const { subjectsArray } = req.body;
+exports.updateGroup = (req, res) => {
   const groupId = req.params.id;
-  console.log(req.body, groupId);
 
-  try {
-    let group = await Group.findById(groupId);
-
-    if (!group) {
-      return res.status(400).json({ msg: "El grupo no existe" });
-    }
-
-    group = await Group.findByIdAndUpdate(groupId, { subjects: subjectsArray });
-
-    return res.status(200).json(group);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send("Hubo un error");
-  }
+  Group.findById(groupId)
+    .then((group) => {
+      if (!group) throw new Error("No existe el grupo");
+      return Group.findByIdAndUpdate(groupId, req.body);
+    })
+    .then((group) => {
+      return res.status(200).json(group);
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({ msg: error.message });
+    });
 };
 
 exports.deleteGroup = async (req, res) => {
