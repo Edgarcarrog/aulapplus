@@ -10,6 +10,7 @@ const Input = ({
   required,
   value,
   handleChange,
+  handleClick,
 }) => {
   return (
     <div className="mb-2">
@@ -25,6 +26,7 @@ const Input = ({
         required={required}
         autoFocus={autoFocus}
         onChange={handleChange}
+        onClick={handleClick}
       />
     </div>
   );

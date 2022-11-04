@@ -28,7 +28,6 @@ const Login = () => {
       navigate("/home");
     } catch (error) {
       const myModal = new Modal("#myModal");
-      // console.log(error.response.data.msg);
       //-------selecciona el modal a mostrar dependiendo del error
       switch (error.response.data.msg) {
         case "El correo no ha sido verificado.":
