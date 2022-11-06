@@ -27,7 +27,7 @@ const AddSubjects = () => {
   const setSubject = async () => {
     try {
       await clienteAxios.put(`/groups/addSubjects/${currentGroup._id}`, {
-        subjectsArray,
+        subjects: subjectsArray,
       });
     } catch (error) {
       console.log(error);
@@ -42,7 +42,7 @@ const AddSubjects = () => {
         </div>
       </div>
       <div className="row m-0 justify-content-center">
-        <div className="col-6 col-md-3 m-0 px-1">
+        <div className="col-12 col-md-3 m-0 px-1">
           <form onSubmit={handleSubmit}>
             <Input
               className="m-0"
@@ -58,7 +58,7 @@ const AddSubjects = () => {
             />
           </form>
         </div>
-        <div className="col-6 col-md-3 m-0 p-0">
+        <div className="col-12 col-md-3 m-0 p-0">
           <ul className="list-group">
             {subjectsArray &&
               subjectsArray.map((item, index) => (

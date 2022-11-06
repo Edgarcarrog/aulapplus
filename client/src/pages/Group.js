@@ -6,6 +6,10 @@ import clienteAxios from "../config/axios";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import AddSubjects from "../components/AddSubjects";
+import Input from "../components/Input";
+import ModalComponent from "../components/modals/ModalComponent";
+import { Modal } from "bootstrap";
+import AddStudentModal from "../components/modals/AddStudentModal";
 
 const Group = () => {
   const dispatch = useDispatch();
@@ -15,6 +19,8 @@ const Group = () => {
   const [loading, setLoading] = useState(true);
   const [subjects, setSubjects] = useState(null);
 
+  const [myModal, setModalData] = useState(null);
+
   //const currentGroup = useSelector((state) => state.teacher.currentGroup);
 
   useEffect(() => {
@@ -23,8 +29,10 @@ const Group = () => {
         const currentGroup = await clienteAxios.get(
           `/groups/oneGroup/${groupId}`
         );
+        //agrega el grupo al state global
         dispatch(setCurrentGroup(currentGroup.data));
         setSubjects(currentGroup.data.subjects);
+        setModalData(new Modal("#myModal"));
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -35,6 +43,9 @@ const Group = () => {
 
   return (
     <div className="main">
+      <ModalComponent data-bs-backdrop="static" data-bs-keyboard="false">
+        <AddStudentModal title="Agregar alumno" myModal={myModal} />
+      </ModalComponent>
       <div className="container-fluid container-xxl">
         <Header />
         {loading ? (
@@ -55,6 +66,12 @@ const Group = () => {
                         </li>
                       ))}
                   </ul>
+                  <Input
+                    className="btn-main"
+                    type="submit"
+                    value="Agregar alumno"
+                    handleClick={() => myModal.show()}
+                  />
                 </div>
               </div>
             </main>
