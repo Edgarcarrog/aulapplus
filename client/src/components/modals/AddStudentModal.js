@@ -13,7 +13,7 @@ const AddStudentModal = ({ title, myModal }) => {
     firstLastname: "",
     secondLastname: "",
   });
-
+  
   const currentGroup = useSelector((state) => state.teacher.currentGroup);
 
   useEffect(() => {
