@@ -1,32 +1,38 @@
 import React, { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
+import { useSelector } from "react-redux";
 import clienteAxios from "../../config/axios";
 import Input from "../Input";
 
 const AddStudentModal = ({ title, myModal }) => {
   const [disabled, setDisabled] = useState("disabled");
+  const [groupId, setGroupId] = useState(null);
 
   const [dataForm, handleChange, resetDataForm] = useForm({
     studentName: "",
-    firstLastName: "",
-    secondLastName: "",
+    firstLastname: "",
+    secondLastname: "",
   });
+
+  const currentGroup = useSelector((state) => state.teacher.currentGroup);
 
   useEffect(() => {
     if (
       dataForm.studentName &&
-      dataForm.firstLastName &&
-      dataForm.secondLastName
+      dataForm.firstLastname &&
+      dataForm.secondLastname
     ) {
       setDisabled("");
     } else setDisabled("disabled");
-  }, [dataForm]);
+    if (currentGroup) {
+      setGroupId([currentGroup._id]);
+    }
+  }, [dataForm, currentGroup]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const user = localStorage.getItem("user");
-      await clienteAxios.post(`/groups/${user}`, dataForm);
+      await clienteAxios.post(`/students`, { ...dataForm, groupId });
       resetDataForm();
       myModal.hide();
     } catch (error) {
@@ -56,24 +62,25 @@ const AddStudentModal = ({ title, myModal }) => {
             autoFocus={true}
             type="text"
             required={true}
+            value={dataForm.studentName}
             handleChange={handleChange}
           />
           <Input
-            id="firstLastName"
+            id="firstLastname"
             label="Apellido paterno"
-            htmlFor="firstLastName"
-            autoFocus={true}
+            htmlFor="firstLastname"
             type="text"
             required={true}
+            value={dataForm.firstLastname}
             handleChange={handleChange}
           />
           <Input
-            id="secondLastName"
+            id="secondLastname"
             label="Apellido materno"
-            htmlFor="secondLastName"
-            autoFocus={true}
+            htmlFor="secondLastname"
             type="text"
             required={true}
+            value={dataForm.secondLastname}
             handleChange={handleChange}
           />
         </form>
@@ -92,7 +99,7 @@ const AddStudentModal = ({ title, myModal }) => {
           disabled={disabled}
           onClick={handleSubmit}
         >
-          Crear grupo
+          Agregar alumno
         </button>
       </div>
     </>

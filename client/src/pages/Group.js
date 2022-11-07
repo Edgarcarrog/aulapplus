@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentGroup } from "../features/teacher/teacherSlice";
 import clienteAxios from "../config/axios";
 import { useParams } from "react-router-dom";
