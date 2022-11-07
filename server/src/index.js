@@ -6,6 +6,7 @@ const cors = require("cors");
 const connectDB = require("./database/db");
 const userRoutes = require("./v1/routes/users.routes");
 const groupRoutes = require("./v1/routes/groups.routes");
+const studentRoutes = require("./v1/routes/students.routes");
 
 //Conectarse a la base de datos
 connectDB();
@@ -20,10 +21,8 @@ app.use(express.json());
 //routers
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", groupRoutes);
-/* 
-app.use("/api/v1", followRoutes);
-app.use("/api/v1", hobbieRoutes);
-app.use("/api/v1", postRoutes); */
+app.use("/api/v1", studentRoutes);
+
 
 try {
   app.listen(app.get("port"), console.log(`Server on port ${app.get("port")}`));

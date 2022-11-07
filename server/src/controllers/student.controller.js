@@ -1,34 +1,27 @@
 const User = require("../models/User");
-const Group = require("../models/Group");
+const Student = require("../models/Student");
 const { verifyToken } = require("../helpers/jwt");
 const { validationResult } = require("express-validator");
 
-exports.createGroup = (req, res) => {
+exports.createStudent = (req, res) => {
   //revisar si hay errores
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { group, grade, cicle } = req.body;
-  const { token } = req.params;
-  const tokenGotten = verifyToken(token);
-  const teacherId = tokenGotten.payload;
+  const { studentName, firstLastname, secondLastname, groupId } = req.body;
 
-  return Group.findOne({
-    grade,
-    group,
-    cicle,
-    teacher: teacherId,
-  })
-    .then((groupFound) => {
-      if (groupFound) throw new Error("Ya existe el grupo");
-      let newGroup = new Group({ grade, group, cicle });
-      newGroup.teacher = teacherId;
-      return newGroup.save();
-    })
-    .then((newGroup) => {
-      return res.status(200).json(newGroup);
+  let newStudent = new Student({
+    studentName,
+    firstLastname,
+    secondLastname,
+    groups: [groupId],
+  });
+  newStudent
+    .save()
+    .then((newStudent) => {
+      return res.status(200).json(newStudent);
     })
     .catch((error) => {
       console.log(error);
@@ -36,7 +29,7 @@ exports.createGroup = (req, res) => {
     });
 };
 
-exports.getOneGroup = (req, res) => {
+/* exports.getOneGroup = (req, res) => {
   //extraer id del profesor
   const { id } = req.params;
   Group.findById(id)
@@ -93,7 +86,7 @@ exports.updateGroup = (req, res) => {
 };
 
 exports.deleteGroup = async (req, res) => {
-  /* try {
+    try {
     const groupId = req.params.id;
     const teacherId = req.user.id;
     var userID = mongoose.mongo.ObjectID(groupId);
@@ -116,6 +109,7 @@ exports.deleteGroup = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).send("Hubo un error");
-  } */
+  }
   return res.status(200).json(group);
 };
+*/
