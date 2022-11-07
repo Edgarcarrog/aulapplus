@@ -25,7 +25,7 @@ const CreateGroupModal = ({ title, myModal }) => {
       resetDataForm();
       myModal.hide();
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.msg);
     }
   };
 

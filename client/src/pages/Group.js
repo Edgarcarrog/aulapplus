@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentGroup } from "../features/teacher/teacherSlice";
 import clienteAxios from "../config/axios";
 import { useParams } from "react-router-dom";
@@ -13,12 +13,13 @@ import AddStudentModal from "../components/modals/AddStudentModal";
 
 const Group = () => {
   const dispatch = useDispatch();
+  const currentGroup = useSelector((state) => state.teacher.currentGroup);
+  console.log(currentGroup);
 
   const { groupId } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [subjects, setSubjects] = useState(null);
-
   const [myModal, setModalData] = useState(null);
 
   //const currentGroup = useSelector((state) => state.teacher.currentGroup);
@@ -57,7 +58,7 @@ const Group = () => {
             <main>
               <div className="row m-0">
                 <div className="col-12 col-md-4 justify-content-end m-0 p-0">
-                  <h1>Sí hay materias!!!!!!!</h1>
+                  <h1>{`${currentGroup.grade}° "${currentGroup.group}" ${currentGroup.cicle}`}</h1>
                   <ul className="list-group">
                     {subjects &&
                       subjects.map((item, index) => (

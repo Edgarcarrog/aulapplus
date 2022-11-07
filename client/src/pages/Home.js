@@ -60,6 +60,7 @@ const Home = () => {
                 >
                   <Card
                     title={`${item.grade}o "${item.group}"`}
+                    subtitle={item.cicle}
                     handleClick={() => navigate(`/group/${item._id}`)}
                   />
                 </div>
