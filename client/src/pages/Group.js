@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentGroup } from "../features/teacher/teacherSlice";
 import clienteAxios from "../config/axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import AddSubjects from "../components/AddSubjects";
 import Input from "../components/Input";
@@ -63,7 +63,9 @@ const Group = () => {
                     {subjects &&
                       subjects.map((item, index) => (
                         <li key={index} className="list-group-item">
-                          {item}
+                          <Link to="/home" className="list-group__link">
+                            {item}
+                          </Link>
                         </li>
                       ))}
                   </ul>

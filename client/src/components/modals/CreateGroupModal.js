@@ -33,7 +33,6 @@ const CreateGroupModal = ({ title, myModal }) => {
     } catch (error) {
       setToastMsg(error.response.data.msg);
       console.log(error.response.data.msg);
-      // myToast.delay(2000);
       myToast.show();
     }
   };
@@ -137,6 +136,7 @@ const CreateGroupModal = ({ title, myModal }) => {
           type="button"
           className="btn btn-secondary"
           data-bs-dismiss="modal"
+          onClick={() => myToast.hide()}
         >
           Cancelar
         </button>
