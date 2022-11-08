@@ -92,6 +92,17 @@
   color: #027373;
 }
 
+.toast-body__icon {
+  font-size: 3rem;
+  text-align: center;
+  color: #a62b85;
+}
+
+.toast-body__message {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .fade-in-left {
   -webkit-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   -moz-animation: fade-in-left 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;

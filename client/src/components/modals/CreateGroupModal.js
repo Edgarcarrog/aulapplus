@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useForm from "../../hooks/useForm";
 import clienteAxios from "../../config/axios";
+import ToastComponent from "../ToastComponent";
+import { Toast } from "bootstrap";
+import { BiErrorCircle } from "react-icons/bi";
 
 const CreateGroupModal = ({ title, myModal }) => {
   const [disabled, setDisabled] = useState("disabled");
+  const [myToast, setMyToast] = useState(null);
+  const [toastMsg, setToastMsg] = useState(null);
 
   const [dataForm, handleChange, resetDataForm] = useForm({
     grade: "",
@@ -15,6 +20,7 @@ const CreateGroupModal = ({ title, myModal }) => {
     if (dataForm.grade && dataForm.group && dataForm.cicle) {
       setDisabled("");
     }
+    setMyToast(new Toast("#liveToast"));
   }, [dataForm]);
 
   const handleSubmit = async (event) => {
@@ -25,12 +31,23 @@ const CreateGroupModal = ({ title, myModal }) => {
       resetDataForm();
       myModal.hide();
     } catch (error) {
+      setToastMsg(error.response.data.msg);
       console.log(error.response.data.msg);
+      // myToast.delay(2000);
+      myToast.show();
     }
   };
 
   return (
     <>
+      <ToastComponent msg={toastMsg}>
+        <>
+          <div className="toast-body__icon">
+            <BiErrorCircle />
+          </div>
+          <div className="toast-body__message">{toastMsg}</div>
+        </>
+      </ToastComponent>
       <div className="modal-header">
         <h1 className="modal-title fs-5" id="myModalLabel">
           {title}

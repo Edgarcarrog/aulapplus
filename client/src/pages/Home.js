@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import clienteAxios from "../config/axios";
-import { Modal } from "bootstrap";
 import Header from "../components/Header";
 import CreateGroupModal from "../components/modals/CreateGroupModal";
 import ModalComponent from "../components/modals/ModalComponent";
 import Card from "../components/Card";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setGroups } from "../features/teacher/teacherSlice";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "bootstrap";
 
 const Home = () => {
   const groupsState = useSelector((state) => state.teacher.myGroups);
@@ -21,7 +20,6 @@ const Home = () => {
 
   // Asigna a "myModal" un instancia de Modal para mostrar u ocultar
   useEffect(() => {
-    //TODO:TERMINAR FUNCIÓN
     const getGroups = async () => {
       const user = localStorage.getItem("user");
       try {
