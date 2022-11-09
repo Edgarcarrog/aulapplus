@@ -20,6 +20,10 @@ const groupSchema = Schema(
     subjects: {
       type: [String],
     },
+    partials: {
+      type: Number,
+      default: 1,
+    },
     teacher: {
       type: Schema.Types.ObjectId,
       ref: "User",

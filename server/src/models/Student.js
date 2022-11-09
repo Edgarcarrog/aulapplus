@@ -17,10 +17,24 @@ const studentSchema = Schema(
       required: true,
       trim: true,
     },
-    groups: [
+    /* groups: [
       {
         type: Schema.Types.ObjectId,
         ref: "Group",
+      },
+    ], */
+    subjects: [
+      {
+        subjectName: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        grades: [Number],
+        group: {
+          type: Schema.Types.ObjectId,
+          ref: "Group",
+        },
       },
     ],
   },
