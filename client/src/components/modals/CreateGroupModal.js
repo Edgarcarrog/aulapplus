@@ -4,6 +4,7 @@ import clienteAxios from "../../config/axios";
 import ToastComponent from "../ToastComponent";
 import { Toast } from "bootstrap";
 import { BiErrorCircle } from "react-icons/bi";
+import { filterNumber } from "../../helpers/filterNumber";
 
 const CreateGroupModal = ({ title, myModal }) => {
   const [disabled, setDisabled] = useState("disabled");
@@ -14,6 +15,7 @@ const CreateGroupModal = ({ title, myModal }) => {
     grade: "",
     group: "",
     cicle: "",
+    partials: "",
   });
 
   useEffect(() => {
@@ -127,6 +129,22 @@ const CreateGroupModal = ({ title, myModal }) => {
               <option value="2024-2025">2024-2025</option>
               <option value="2025-2026">2025-2026</option>
             </select>
+            <div className="invalid-feedback">Please select a valid state.</div>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="partials" className="col-form-label">
+              Número de parciales
+            </label>
+            <input
+              type="number"
+              id="partials"
+              name="partials"
+              min="1"
+              max="20"
+              step="1"
+              value={dataForm.partials}
+              onChange={(event) => filterNumber(event, handleChange)}
+            ></input>
             <div className="invalid-feedback">Please select a valid state.</div>
           </div>
         </form>
